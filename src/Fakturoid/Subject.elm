@@ -23,6 +23,15 @@ subjectDecoder =
         |> optional "privateNote" (nullable string) Nothing
 
 
+getAllSubjects : Config -> Request (List Subject)
+getAllSubjects config =
+    let
+        path =
+            "/subjects.json"
+    in
+        get config path (Json.Decode.list subjectDecoder)
+
+
 getSubjectDetails : Config -> Int -> Request Subject
 getSubjectDetails config num =
     let
